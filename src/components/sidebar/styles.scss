@@ -1,0 +1,179 @@
+@use 'theme' as *;
+
+aside.menu {
+  position: relative;
+  width: 80px;
+  max-width: 300px;
+  background-color: $grey;
+  height: 100vh;
+  transition: all .2s ease-in-out 0s;
+
+  .top-container {
+    position: relative;
+
+    .icon-button-container {
+      margin: 15px 0 15px 15px;
+      color: $white;
+      text-align: center;
+
+      svg {
+        padding: 4px;
+        box-sizing: border-box;
+      }
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      height: 72px;
+      color: $white;
+
+      h1 {
+        margin: 0;
+        text-shadow: 0px 0px 3px $white;
+      }
+
+      .company-name {
+        animation: fadeIn 1s ease-in forwards;
+      }
+
+      .company-moto {
+        font-size: $font-s;
+        opacity: 0.5;
+      }
+
+      svg {
+        width: 40px;
+        margin: 6px 12px 6px 16px;
+      }
+    }
+
+    .user-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: $white;
+    }
+
+    .icon-button-container {
+      position: absolute;
+      right: -20%;
+      top: 25%;
+      z-index: 999;
+      background-color: $grey;
+      padding: 8px;
+      transition: all .2s ease-in-out 0s;
+    }
+  }
+
+  .menu-items-container {
+    position: relative;
+    top: 10%;
+
+    .main-menu-category-title {
+      padding: 0 20px;
+      margin: 0;
+      color: rgba(249, 249, 249, 0.3);
+      text-transform: uppercase;
+      font-size: $font-s;
+      font-weight: 600;
+      transition: text-align .2s ease-in-out 0s;
+    }
+
+    .main-menu-item {
+      a {
+        text-decoration: none;
+        width: calc(100% - 30px);
+        height: 45px;
+        margin: 8px auto;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        border-radius: 8px;
+        transition: width .2s ease-in-out 0s;
+        transition: justify-content .2s ease-in-out .2s;
+
+        &.active,
+        &:hover {
+          background-color: rgba(249, 249, 249, 0.1);
+          box-shadow: rgba(249, 249, 249, 0.16) 0px 0px 3px;
+        }
+
+        span {
+          color: $white;
+          font-weight: 600;
+          margin: 0 $spacing-m;
+          animation: fadeIn 1s ease-in forwards;
+        }
+
+        svg {
+          width: 24px;
+        }
+      }
+    }
+  }
+
+  .bottom-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    .logout-button {
+      --s: 1px;
+      width: calc(100% - 32px);
+      height: 45px;
+      margin: 8px auto;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      border-radius: 8px;
+      // background: #ee6907;
+      background: rgba(249, 249, 249, 0.1);
+      backdrop-filter: blur(5.1px);
+      cursor: pointer;
+      transform: translate(0);
+      transform-style: preserve-3d;
+    }
+
+    .gradient-shaddow {
+      &:after {
+        content:"";
+        position: absolute;
+        inset: 0px;
+        clip-path: polygon(-100vmax -100vmax, 100vmax -100vmax, 100vmax 100vmax, -100vmax 100vmax, -100vmax -100vmax,
+          calc(0px + var(--s)) calc(0px + var(--s)),
+          calc(0px + var(--s)) calc(100% - var(--s)),
+          calc(100% - var(--s)) calc(100% - var(--s)),
+          calc(100% - var(--s)) calc(0px + var(--s)),
+          calc(0px + var(--s)) calc(0px + var(--s))
+        );
+        transform: translate3d(0,0,-1px);
+        z-index: -1;
+        filter: blur(5.1px);
+      }
+    
+      &:hover:after {
+        background: conic-gradient(
+          from 90deg at 40% -25%, #ffd700, #f79d03, #ee6907, #e6390a, #de0d0d, #d61039, #cf1261, #c71585, #cf1261, #d61039, #de0d0d, #ee6907, #f79d03, #ffd700, #ffd700, #ffd700
+        );
+      }
+    }
+  }
+
+  &.open {
+    width: 275px;
+
+    .top-container .icon-button-container {
+      position: absolute;
+      right: -5%;
+      top: 25%;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

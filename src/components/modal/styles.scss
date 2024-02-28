@@ -1,0 +1,19 @@
+@use 'theme' as *;
+
+.modal-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 999;
+  background-color: rgba(0,0,0,0.7);
+
+  .modal-container {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    background-color: $white;
+  }
+}

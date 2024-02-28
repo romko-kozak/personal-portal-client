@@ -1,0 +1,67 @@
+@use 'theme' as *;
+
+.button {
+  width: 100%;
+  padding: $spacing-m;
+  // margin: $spacing-l auto 0;
+  max-width: 350px;
+  border-radius: 32px;
+  font-size: $font-m;
+  font-weight: 300;
+  cursor: pointer;
+  transition: .2s ease-in-out;
+
+  &.light-bg {
+    background-color: $dark-grey;
+    color: $white;
+    border: 3px solid transparent;
+
+    &:not(.no-hover):hover:enabled {
+      background-color: transparent;
+      color: $dark-grey;
+      border: 3px solid $dark-grey;
+    }
+  }
+
+  &.dark-bg {
+    background-color: transparent;
+    border: 3px solid $white;
+    color: $white;
+
+    &:not(.no-hover):hover:enabled {
+      background-color: $white;
+      border: 3px solid $white;
+      color: $dark-grey;
+    }
+  }
+
+  &.glass {
+    background: rgba(249, 249, 249, 0.1);
+    backdrop-filter: blur(5.1px);
+    -webkit-backdrop-filter: blur(5.1px);
+    border: none;
+    color: $white;
+
+    &:not(.no-hover):hover:enabled {
+      background: rgba(249, 249, 249, 0.3);
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+  }
+
+  @media (max-height: 667px) {
+    padding: $spacing-s;
+    font-size: $font-s;
+  }
+}
+
+.button-error {
+  padding: 0;
+  margin: $spacing-s 0;
+  font-size: $font-s;
+  color: $red;
+  text-align: center;
+  width: 100%;
+}

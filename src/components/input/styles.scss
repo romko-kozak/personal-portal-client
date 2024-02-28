@@ -1,0 +1,55 @@
+@use 'theme' as *;
+
+.input {
+  width: 100%;
+  height: 100%;
+  max-width: 350px;
+  max-height: 48px;
+  margin: $spacing-s auto;
+  color: $dark-grey;
+  border: none;
+  padding: $spacing-m;
+  box-sizing: border-box;
+  border-radius: 4px;
+  outline: none;
+  transition: .3s ease-in-out;
+
+  &.lite-bg {
+    border-left: 8px solid $dark-grey;
+    background-color: rgba(0,0,0,0.1);
+  }
+
+  &.dark-bg {
+    border-left: 8px solid $white;
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  &.glass {
+    color: #f9f9f9;
+    background-color: rgba(26, 27, 33, 0.5);
+    backdrop-filter: blur(5.1px);
+    -webkit-backdrop-filter: blur(5.1px);
+  }
+
+  &.error {
+    border-left: 8px solid $red;
+  }
+
+  &:focus {
+    border-left: 0px solid $dark-grey;
+    padding-left: 24px;
+  }
+
+  @media (max-height: 667px) {
+    padding: $spacing-s;
+  }
+}
+
+.input-error {
+  padding: 0;
+  margin: 0;
+  font-size: $font-s;
+  color: $red;
+  text-align: left;
+  width: 100%;
+}

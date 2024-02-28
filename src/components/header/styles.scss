@@ -1,0 +1,171 @@
+@use 'theme' as *;
+
+.app-header {
+  height: 25vh;
+  background: url('./../../assets/img/header-bg.svg');
+  background-size: 100%;
+  background-position: center bottom;
+  padding: 0 calc(1.5% + $spacing-m);
+  position: relative;
+
+  @media (max-width: 1800px) {
+    padding: 0 1.5%;
+  }
+
+  .header-content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+      justify-content: center;
+      height: auto;
+    }
+  }
+
+  .user-info-container {
+    display: flex;
+    align-items: center;
+    color: $white;
+    min-width: 200px;
+    max-width: 300px;
+
+    @media (max-width: 900px) {
+      display: none;
+    }
+
+    .user-info {
+      overflow: hidden;
+      margin: 0 $spacing-s;
+
+      .user-name, .user-email {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+  
+      .user-name {
+        font-weight: bold;
+        font-size: $font-m;
+
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
+      }
+  
+      .user-email {
+        font-size: $font-s;
+        opacity: 0.5;
+      }
+    }
+
+    .user-avatar-container {
+      z-index: 1;
+      position: relative;
+      width: 50px;
+      margin: 0 16px;
+      color: $grey;
+  
+      .user-avatar-colored-border {
+        border: 5px solid transparent;
+        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        top: -4px;
+        left: -4px;
+      }
+  
+      .user-avatar {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: $font-l;
+  
+        img {
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          position: absolute;
+          transition: 0.3s ease-in-out 0s;
+  
+          &:hover {
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+
+    svg {
+      width: 30px;
+      border-radius: 50%;
+      color: $white;
+      margin: 0;
+      box-sizing: border-box;
+
+      &:hover {
+        border-color: rgba(249, 249, 249, 0.1);
+        cursor: pointer;
+      }
+    }
+  }
+
+  .date-weather-container {
+    color: $white;
+    margin: $spacing-m 0;
+    min-width: 300px;
+
+    @media (max-width: 900px) {
+      margin: 0;
+    }
+  
+    h3, p {
+      margin: 0;
+      padding: 0;
+    }
+  
+    .date-container {
+      text-align: center;
+  
+      .date {
+        font-size: $font-l;
+        font-weight: bold;
+      }
+    }
+  
+    .weather-container {
+      display: flex;
+      align-items: center;
+      min-height: 80px;
+  
+      .weather-icon {
+        margin: 0 $spacing-m;
+        width: 80px;
+      }
+  
+      .weather-descripton {
+        .weather-wind {
+          font-size: $font-s;
+          opacity: 0.8;
+        }
+      }
+  
+      .weather-temperature {
+        font-size: $font-l;
+        font-weight: bold;
+      }
+    }
+  }
+}

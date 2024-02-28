@@ -1,0 +1,85 @@
+@use 'theme' as *;
+
+.user-details-container {
+  display: flex;
+  color: $white;
+  transition: all 1s ease-in-out 0s;
+
+  @media (max-width: 1080px) {
+    flex-direction: column;
+  }
+
+  .user-details-picture {
+    flex: 0.5;
+    width: 250px;
+    height: 250px;
+    padding: 0 30px;
+
+    @media (max-width: 1080px) {
+      align-self: center;
+    }
+
+    .avatar-preview {
+      width: 220px;
+      height: 220px;
+      position: relative;
+      margin: 70px auto 0;
+
+      @media (max-width: 1080px) {
+        margin: 0 auto 0;
+      }
+    }
+
+    .user-avatar-container {
+      position: relative;
+
+      .user-avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: $font-xl;
+      }
+    }
+  }
+
+  .user-details-main {
+    flex: 1;
+    width: 30%;
+
+    @media (max-width: 1080px) {
+      width: auto;
+    }
+
+    .input {
+      margin: $spacing-s;
+
+      @media (max-width: 920px) {
+        max-width: 100%;
+        margin: $spacing-s 0;
+      }
+    }
+  }
+
+  .user-details-permissions {
+    flex: 1.5;
+    padding: 0 $spacing-m;
+
+    @media (max-width: 1080px) {
+      width: auto;
+      padding: 0;
+    }
+
+    .user-details-permissions-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-content: baseline;
+      height: 60vh;
+      overflow: auto;
+      
+      .switch-container {
+        margin: $spacing-s $spacing-s 0 0;
+      }
+    }
+  }
+}
