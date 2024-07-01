@@ -5,7 +5,7 @@ const UsersAPI = BaseAPI.injectEndpoints({
   tagTypes: ['Users'],
   endpoints: (build) => ({
     getAllUsers: build.query({
-      query: () => ({url: 'users'}),
+      query: (companyName) => ({url: companyName ? `users?company=${companyName}` : 'users'}),
       providesTags: () => ['Users']
     }),
     getUserDetails: build.query({

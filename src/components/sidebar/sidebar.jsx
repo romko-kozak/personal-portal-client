@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 
 import IconButton from 'components/icon-button';
+import {usePermissions} from 'components/permissions-context';
 
 import {ReactComponent as LogoR} from 'assets/img/logo-r.svg';
 import {ReactComponent as MenuOpen} from 'assets/icons/menu-open.svg';
@@ -14,6 +15,7 @@ import './styles.scss';
 
 const Sidebar = ({user}) => {
   const {pathname} = useLocation();
+  const {permissions} = usePermissions();
   const [expanded, setExpanded] = useState(false);
   const toggleMenu = () => {
     setExpanded(!expanded);
@@ -52,12 +54,14 @@ const Sidebar = ({user}) => {
             {expanded && <span>Dashboard</span>}
           </Link>
         </div>
-        <div className='main-menu-item'>
-          <Link to='/users' className={pathname === '/users' ? 'active' : ''}>
-            <Users />
-            {expanded && <span>Users</span>}
-          </Link>
-        </div>
+        {(permissions.includes('SHOW_ALL_USERS') || permissions.includes('SHOW_COMPANY_USERS')) && (
+          <div className='main-menu-item'>
+            <Link to='/users' className={pathname === '/users' ? 'active' : ''}>
+              <Users />
+              {expanded && <span>Users</span>}
+            </Link>
+          </div>
+        )}
         <div className='main-menu-item'>
           <Link to={`/users/${user.id}`} className={pathname === `/users/${user.id}` ? 'active' : ''}>
             <Profile />
@@ -66,9 +70,11 @@ const Sidebar = ({user}) => {
         </div>
       </div>
       <div className='bottom-container'>
-        <div className='logout-button gradient-shaddow'>
+        <div className='logout-button'>
+          {expanded && <span>Log out</span>}
           <SignOut />
         </div>
+        <div className='version-block'>Version 2024.2.1</div>
       </div>
     </aside>
   );

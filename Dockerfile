@@ -1,6 +1,6 @@
 # ==== CONFIGURE =====
 # Use a Node base image
-FROM node 
+FROM node
 # Set the working directory to /portal-client inside the container
 WORKDIR /portal-client
 # Copy app files

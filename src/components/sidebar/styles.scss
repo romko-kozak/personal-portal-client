@@ -6,7 +6,6 @@ aside.menu {
   max-width: 300px;
   background-color: $grey;
   height: 100vh;
-  transition: all .2s ease-in-out 0s;
 
   .top-container {
     position: relative;
@@ -30,11 +29,6 @@ aside.menu {
 
       h1 {
         margin: 0;
-        text-shadow: 0px 0px 3px $white;
-      }
-
-      .company-name {
-        animation: fadeIn 1s ease-in forwards;
       }
 
       .company-moto {
@@ -62,7 +56,6 @@ aside.menu {
       z-index: 999;
       background-color: $grey;
       padding: 8px;
-      transition: all .2s ease-in-out 0s;
     }
   }
 
@@ -94,7 +87,12 @@ aside.menu {
         transition: width .2s ease-in-out 0s;
         transition: justify-content .2s ease-in-out .2s;
 
-        &.active,
+        &.active svg {
+          path, circle, line {
+            stroke: #dc670c;
+          }
+        }
+
         &:hover {
           background-color: rgba(249, 249, 249, 0.1);
           box-shadow: rgba(249, 249, 249, 0.16) 0px 0px 3px;
@@ -102,9 +100,8 @@ aside.menu {
 
         span {
           color: $white;
-          font-weight: 600;
+          font-weight: 300;
           margin: 0 $spacing-m;
-          animation: fadeIn 1s ease-in forwards;
         }
 
         svg {
@@ -120,45 +117,30 @@ aside.menu {
     width: 100%;
 
     .logout-button {
-      --s: 1px;
       width: calc(100% - 32px);
       height: 45px;
       margin: 8px auto;
       padding: 0 10px;
       display: flex;
       align-items: center;
+      justify-content: space-around;
+      color: $white;
       box-sizing: border-box;
       border-radius: 8px;
-      // background: #ee6907;
-      background: rgba(249, 249, 249, 0.1);
+      background: #dc670c;
       backdrop-filter: blur(5.1px);
       cursor: pointer;
-      transform: translate(0);
-      transform-style: preserve-3d;
+
+      svg {
+        width: 24px;
+      }
     }
 
-    .gradient-shaddow {
-      &:after {
-        content:"";
-        position: absolute;
-        inset: 0px;
-        clip-path: polygon(-100vmax -100vmax, 100vmax -100vmax, 100vmax 100vmax, -100vmax 100vmax, -100vmax -100vmax,
-          calc(0px + var(--s)) calc(0px + var(--s)),
-          calc(0px + var(--s)) calc(100% - var(--s)),
-          calc(100% - var(--s)) calc(100% - var(--s)),
-          calc(100% - var(--s)) calc(0px + var(--s)),
-          calc(0px + var(--s)) calc(0px + var(--s))
-        );
-        transform: translate3d(0,0,-1px);
-        z-index: -1;
-        filter: blur(5.1px);
-      }
-    
-      &:hover:after {
-        background: conic-gradient(
-          from 90deg at 40% -25%, #ffd700, #f79d03, #ee6907, #e6390a, #de0d0d, #d61039, #cf1261, #c71585, #cf1261, #d61039, #de0d0d, #ee6907, #f79d03, #ffd700, #ffd700, #ffd700
-        );
-      }
+    .version-block {
+      padding: 0 0 8px;
+      color: $white;
+      font-size: 12px;
+      text-align: center;
     }
   }
 
@@ -171,9 +153,4 @@ aside.menu {
       top: 25%;
     }
   }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }

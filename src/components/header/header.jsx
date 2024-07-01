@@ -122,7 +122,7 @@ const Header = ({showLoaderBasedOnValues, user}) => {
           error=''
         />
         <div className='user-info-container'>
-          {permissions.includes('SHOW_ALL_USERS') && (
+          {(permissions.includes('SHOW_ALL_USERS') || permissions.includes('SHOW_COMPANY_USERS')) && (
             <IconButton
               icon={Users}
               tooltipText='Users'

@@ -1,3 +1,4 @@
+import {useEffect, useState} from 'react';
 import gradient from 'random-gradient';
 import {Link} from 'react-router-dom';
 
@@ -7,11 +8,27 @@ import Button from 'components/button';
 import {ReactComponent as FBIcon} from 'assets/icons/fb.svg';
 import {ReactComponent as InstagramIcon} from 'assets/icons/instagram.svg';
 import {ReactComponent as LinkedinIcon} from 'assets/icons/linkedin.svg';
+import noImagePlaceholder from 'assets/img/no-img.png';
 
 import './../styles.scss';
 
 const UserCard = ({user, showUserActions, showDeleteButton, showPromoteButton, handleDeleteButtonClick, handlePromoteButtonClick}) => {
   const userAbbr = `${Array.from(user.firstName)[0]}${Array.from(user.lastName)[0]}`;
+  const [imageValid, setImageValid] = useState(false);
+
+  useEffect(() => {
+    const checkImage = (url) => {
+      const img = new Image();
+
+      img.src = url;
+      img.onload = () => setImageValid(true);
+      img.onerror = () => setImageValid(false);
+    };
+
+    if (user.avatar) {
+      checkImage(user.avatar);
+    }
+  }, []);
 
   return (
     <div className='user-card' key={user.id}>
@@ -27,7 +44,7 @@ const UserCard = ({user, showUserActions, showDeleteButton, showPromoteButton, h
             style={{backgroundColor: stringToColor(userAbbr)}}
           >
             {userAbbr}
-            {user.avatar ? <img src={user.avatar} alt='user-avatar'/> : null}
+            {user.avatar ? <img src={imageValid ? user.avatar : noImagePlaceholder} alt='user-avatar'/> : null}
           </div>
         </div>
         <div className='user-name-container'>

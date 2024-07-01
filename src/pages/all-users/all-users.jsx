@@ -17,7 +17,7 @@ const AllUsers = ({showLoaderBasedOnValues}) => {
   const {search, setSearch} = useSearch();
   const {permissions} = usePermissions();
   const {user: currentUser} = useOutletContext();
-  const {isLoading: getAllUsersLoading, data: allUsers} = useGetAllUsersQuery();
+  const {isLoading: getAllUsersLoading, data: allUsers} = useGetAllUsersQuery(currentUser.applicationId, {skip: !permissions.includes('SHOW_ALL_USERS') && !permissions.includes('SHOW_COMPANY_USERS')});
   const [deleteUser] = useDeleteUserMutation({skip: !permissions.includes('DELETE_USERS')});
   const [showDeleteConfirmationModal, setShowDeleteConfirmationModal] = useState(false);
   const [userToBeDeleted, setUserToBeDeleted] = useState(null);
@@ -32,7 +32,7 @@ const AllUsers = ({showLoaderBasedOnValues}) => {
     }
   }, [getAllUsersLoading]);
 
-  if (!permissions?.includes('SHOW_ALL_USERS')) {
+  if (!permissions?.includes('SHOW_ALL_USERS') && !permissions?.includes('SHOW_COMPANY_USERS')) {
     return <Navigate to='/404' />;
   }
 
@@ -80,7 +80,8 @@ const AllUsers = ({showLoaderBasedOnValues}) => {
         {allUsers?.data?.filter(user => currentUser.id !== user.id).filter(user => {
           return user.firstName.toLowerCase().includes(search.toLowerCase())
             || user.lastName.toLowerCase().includes(search.toLowerCase())
-            || user.email.toLowerCase().includes(search.toLowerCase());
+            || user.email.toLowerCase().includes(search.toLowerCase())
+            || user.applicationId.toLowerCase().includes(search.toLowerCase());
         }).map(user => (
           <UserCard
             key={user.id}
