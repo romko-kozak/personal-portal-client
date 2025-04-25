@@ -94,7 +94,4 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 </table>
 
 ## Learn More
-
-- [Client repository](https://github.com/romko-kozak/login/tree/main/client) for full source.
-- [Server documentation](https://github.com/romko-kozak/login/tree/main/server) for backend APIs.
 - [React Router docs](https://reactrouter.com/) for routing patterns.
